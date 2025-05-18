@@ -1,0 +1,15 @@
+[project]
+name = "sing-box-subscribe"
+version = "0.1.0"
+description = "singbox subscribe helper"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "chardet>=5.2.0",
+    "flask==2.3.2",
+    "paramiko>=3.5.1",
+    "pyyaml>=6.0.2",
+    "requests>=2.32.3",
+    "ruamel-yaml>=0.18.10",
+    "scp>=0.15.0",
+]
