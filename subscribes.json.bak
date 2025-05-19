@@ -1,0 +1,20 @@
+{
+    "subscribes":[
+        {
+            "url": "https://example.top",
+            "tag": "your_tag",
+            "enabled": false,
+            "emoji": 0,
+            "subgroup": "",
+            "prefix": "",
+            "User-Agent":"clashmeta"
+        }
+    ],
+    "airports": {
+        "your_tag": {
+            "host": "example.top",
+            "authorization": "xxx",
+            "cookie": "xxx"
+        }
+    }
+}
