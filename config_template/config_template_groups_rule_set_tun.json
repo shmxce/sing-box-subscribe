@@ -251,6 +251,17 @@
       "interrupt_exist_connections": true
     },
     {
+      "tag": "⚙️ Fallback",
+      "type": "selector",
+      "outbounds": [
+        "📌 单选节点",
+        "自动选择-低配",
+        "自动选择-高配"
+      ],
+      "default": "自动选择-低配",
+      "interrupt_exist_connections": true
+    },
+    {
       "tag": "🤖 OpenAI",
       "type": "selector",
       "outbounds": [
@@ -344,10 +355,11 @@
         "outbound": "🚀 默认出站"
       },
       {
-          "domain": [
-              "bjnet2.com"
-          ],
-          "outbound": "🐢 直连"
+        "domain": [
+          "bjnet2.com",
+          "packages.microsoft.com"
+        ],
+        "outbound": "🐢 直连"
       },
       {
         "domain": [
@@ -445,6 +457,6 @@
         "update_interval": "3d"
       }
     ],
-    "final": "自动选择-低配"
+    "final": "⚙️ Fallback"
   }
 }
