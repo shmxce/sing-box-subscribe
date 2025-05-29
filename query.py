@@ -113,9 +113,6 @@ if __name__ == "__main__":
     parser.add_argument(
         "--tool", type=str, choices=["info", "servers", "log"], help="功能", required=True
     )
-    parser.add_argument(
-        "--update", action="store_true", help="更新订阅信息到文件"
-    )
     args = parser.parse_args()
 
     airport = args.airport
@@ -126,14 +123,20 @@ if __name__ == "__main__":
         case "info":
             sub_data = get_subscribe_summary(airport_config["host"], airport_config["authorization"], airport_config.get("cookie", None))
             print_subscribe_summary(sub_data)
-            if args.update:
-                print("-- 正在更新订阅信息到文件...")
-                for sub_config in config["subscribes"]:
-                    if sub_config.get("tag", None) == airport:
-                        sub_config["url"] = sub_data['data']["subscribe_url"]
-                with open("subscribes.json", "w") as f:
-                    json.dump(config, f, indent=4, ensure_ascii=False)
-                print("--更新完成")
+
+            suburl = sub_data['data']["subscribe_url"]
+            if len(suburl) != 0:
+                need_writeback = False
+                for i, sub_config in enumerate(config["subscribes"]):
+                    if sub_config.get("tag", None) == airport and sub_config["url"] != suburl:
+                        print(f"-- 更新 {airport} 的订阅信息\n\t旧: {sub_config['url']}\n\t新: {suburl}")
+                        config["subscribes"][i]["url"] = suburl
+                        need_writeback = True
+                if need_writeback:
+                    # print(json.dumps(config, indent=4, ensure_ascii=False))
+                    with open("subscribes.json", "w") as f:
+                        json.dump(config, f, indent=4, ensure_ascii=False)
+                    print("-- 更新完成")
         case "servers":
             print_server_list(get_server_list(airport_config["host"], airport_config["authorization"], airport_config.get("cookie", None)))
         case "log":
