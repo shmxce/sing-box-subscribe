@@ -15,7 +15,7 @@
         "direct": ""
     },
     "save_config_path": "./config.json",
-    "auto_backup": false,
+    "auto_backup": true,
     "exclude_protocol":"ssr",
     "config_template": "",
     "Only-nodes": false

@@ -328,9 +328,10 @@ def get_content_form_file(url):
 def save_config(path, nodes):
     try:
         if 'auto_backup' in providers and providers['auto_backup']:
-            now = datetime.now().strftime('%Y%m%d%H%M%S')
+            # now = datetime.now().strftime('%Y%m%d%H%M%S')
             if os.path.exists(path):
-                os.rename(path, f'{path}.{now}.bak')
+                print(f"备份原文件为 \033[33m{path}.bak\033[0m")
+                os.rename(path, f'{path}.bak')
         if os.path.exists(path):
             os.remove(path)
             print(f"已删除文件，并重新保存：\033[33m{path}\033[0m")
